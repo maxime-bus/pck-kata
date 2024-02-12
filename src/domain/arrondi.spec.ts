@@ -11,7 +11,9 @@ describe(`Régles d'arrondi`, () => {
     {valeur: 1.94, arrondiAttendu: 1.95}, // déduction d'après l'énoncé
   ];
 
+  const appliquerArrondi = arrondiSuperieur(0.05);
+
   it.each(donnees)(`Vérifie que $valeur s'arrondi à $arrondiAttendu`, (donnee) => {
-      expect(arrondiSuperieur(0.05, donnee.valeur)).toEqual(donnee.arrondiAttendu);
+    expect(appliquerArrondi(donnee.valeur)).toEqual(donnee.arrondiAttendu);
   });
 });
