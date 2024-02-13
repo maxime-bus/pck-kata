@@ -2,6 +2,7 @@ import {Component, Input} from "@angular/core";
 import {Produit} from "../../../../domain/produit/produit";
 import {CommonModule, NgForOf} from "@angular/common";
 import {TypeProduitComponent} from "./type-produit.component";
+import {ProduitAvecPrixTtc} from "../../../../domain/produit/produit-ttc";
 
 @Component({
   selector: `app-produit`,
@@ -16,7 +17,7 @@ import {TypeProduitComponent} from "./type-produit.component";
       <section class="card">
         <div class="card-body">
           <h1 class="card-title h6">
-            {{produit.nom}}
+            {{produitAvecPrixTtc.nom}}
           </h1>
         </div>
         <ul class="list-group list-group-flush">
@@ -26,7 +27,7 @@ import {TypeProduitComponent} from "./type-produit.component";
                 Catégorie
               </div>
               <div class="col text-end">
-                <app-type-produit [typeProduit]="produit.type"></app-type-produit>
+                <app-type-produit [typeProduit]="produitAvecPrixTtc.type"></app-type-produit>
               </div>
             </div>
           </li>
@@ -36,7 +37,7 @@ import {TypeProduitComponent} from "./type-produit.component";
                 Quantité
               </div>
               <div class="col text-end">
-                {{produit.quantite}}
+                {{produitAvecPrixTtc.quantite}}
               </div>
             </div>
           </li>
@@ -46,7 +47,17 @@ import {TypeProduitComponent} from "./type-produit.component";
                 Prix HT
               </div>
               <div class="col text-end">
-                {{produit.prixHt | currency:'€'}}
+                {{produitAvecPrixTtc.prixHt | currency:'€'}}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                Prix TTC
+              </div>
+              <div class="col text-end">
+                {{produitAvecPrixTtc.prixTtc | currency:'€'}}
               </div>
             </div>
           </li>
@@ -57,5 +68,5 @@ import {TypeProduitComponent} from "./type-produit.component";
 export class ProduitComponent {
 
   @Input()
-  public produit!: Produit;
+  public produitAvecPrixTtc!: ProduitAvecPrixTtc;
 }

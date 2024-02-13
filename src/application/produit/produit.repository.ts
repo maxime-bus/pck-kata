@@ -1,7 +1,6 @@
-import {Produit} from "../../domain/produit/produit";
-import {map, Observable, of} from "rxjs";
-import {TypeProduit} from "../../domain/produit/type-produit";
+import {Observable} from "rxjs";
+import {ProduitAvecPrixTtc} from "../../domain/produit/produit-ttc";
 
 export abstract class ProduitRepository {
-  abstract recupererTousLesProduits(): Observable<Array<Produit>>;
+  abstract recupererTousLesProduits(): Observable<Array<ProduitAvecPrixTtc>>;
 }

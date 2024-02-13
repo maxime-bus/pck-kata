@@ -1,10 +1,10 @@
 import {map, Observable, of} from "rxjs";
-import {Produit} from "../../domain/produit/produit";
 import {TypeProduit} from "../../domain/produit/type-produit";
 import {ProduitRepository} from "../../application/produit/produit.repository";
+import {ProduitAvecPrixTtc} from "../../domain/produit/produit-ttc";
 
 export class FakeProduitRepository implements ProduitRepository {
-  recupererTousLesProduits = (): Observable<Array<Produit>> =>
+  recupererTousLesProduits = (): Observable<Array<ProduitAvecPrixTtc>> =>
     of(donneesDuServeur)
       .pipe(
         map(donnees => donnees.map(mapProduitReponseVersReponse))
@@ -20,8 +20,8 @@ interface ProduitReponse {
   category: string;
 }
 
-function mapProduitReponseVersReponse(pr: ProduitReponse): Produit {
-  return new Produit(
+function mapProduitReponseVersReponse(pr: ProduitReponse): ProduitAvecPrixTtc {
+  return new ProduitAvecPrixTtc(
     pr.productName,
     pr.price,
     pr.quantity,

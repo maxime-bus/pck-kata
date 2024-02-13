@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Produit} from "../../../domain/produit/produit";
 import {CommonModule, NgForOf} from "@angular/common";
 import {ProduitComponent} from "./components/produit.component";
+import {ProduitAvecPrixTtc} from "../../../domain/produit/produit-ttc";
 
 @Component({
   selector: 'app-page-produit',
@@ -18,7 +19,7 @@ import {ProduitComponent} from "./components/produit.component";
 })
 export class PageProduitsComponent {
 
-  public readonly produits$: Observable<Array<Produit>>;
+  public readonly produits$: Observable<Array<ProduitAvecPrixTtc>>;
 
   constructor(
     private readonly produitRepository: ProduitRepository,
