@@ -3,7 +3,7 @@ import {TypeProduit} from "../produit/type-produit";
 
 export interface Taxable {
   type: TypeProduit,
-  prix: number,
+  prixHt: number,
   estImporte: boolean
 }
 
@@ -13,16 +13,16 @@ export function calculerPrixTtc(produitTaxable: Taxable) {
   let taxeImportation = 0;
 
   if (produitTaxable.estImporte) {
-    taxeImportation = appliquerArrondi(produitTaxable.prix * 0.05);
+    taxeImportation = appliquerArrondi(produitTaxable.prixHt * 0.05);
   }
 
   if (produitTaxable.type === TypeProduit.LIVRE) {
-    return produitTaxable.prix + appliquerArrondi(produitTaxable.prix * 0.1) + taxeImportation;
+    return produitTaxable.prixHt + appliquerArrondi(produitTaxable.prixHt * 0.1) + taxeImportation;
   }
 
   if (produitTaxable.type === TypeProduit.AUTRE) {
-    return produitTaxable.prix + appliquerArrondi(produitTaxable.prix * 0.2) + taxeImportation;
+    return produitTaxable.prixHt + appliquerArrondi(produitTaxable.prixHt * 0.2) + taxeImportation;
   }
 
-  return produitTaxable.prix + taxeImportation;
+  return produitTaxable.prixHt + taxeImportation;
 }

@@ -46,7 +46,7 @@ import {TypeProduitComponent} from "./type-produit.component";
                 Prix HT
               </div>
               <div class="col text-end">
-                {{produit.prix | currency:'€'}}
+                {{produit.prixHt | currency:'€'}}
               </div>
             </div>
           </li>
