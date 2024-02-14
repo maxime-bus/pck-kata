@@ -1,5 +1,6 @@
-import {arrondiSuperieur} from "../arrondi";
 import {TypeProduit} from "../produit/type-produit";
+
+import {arrondiSuperieur} from "../../lang/arrondi";
 
 export interface Taxable {
   type: TypeProduit,
