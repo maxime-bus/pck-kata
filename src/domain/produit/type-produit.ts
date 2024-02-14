@@ -4,3 +4,10 @@ export enum TypeProduit {
   LIVRE,
   AUTRE,
 }
+
+export const valeursTypeProduit = [
+  TypeProduit.NOURRITURE,
+  TypeProduit.MEDICAMENT,
+  TypeProduit.LIVRE,
+  TypeProduit.AUTRE,
+];

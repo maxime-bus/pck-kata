@@ -1,7 +1,21 @@
 <h1>Kata PCK - Page produits</h1>
 
+<div class="row mb-3">
+  <div class="col">
+    <label>
+      Filtre
+      <select class="form-select" #typeProduitSelectionne
+              (change)="filtrerParTypeProduit(typeProduitSelectionne.selectedIndex - 1)">
+        <option>Aucun filtre</option>
+        <option *ngFor="let filtre of filtresPossibles"
+                [value]="filtre">{{filtre | libelleTypeProduit}}</option>
+      </select>
+    </label>
+  </div>
+</div>
+
 <div class="row">
-  <div class="col-4 mb-4" *ngFor="let produit of produits$ | async">
+  <div class="col-4 mb-4" *ngFor="let produit of produitsFiltres$ | async">
     <app-produit [produitAvecPrixTtc]="produit"></app-produit>
   </div>
 </div>
