@@ -1,0 +1,11 @@
+<h1>Kata PCK - Page panier</h1>
+
+<a routerLink="/produits">Retour à la page produit</a>
+
+<div class="row">
+  <div class="col">
+    <ul *ngIf="panier$ | async as panier">
+      <li *ngFor="let article of panier.produits">{{article.nom}}</li>
+    </ul>
+  </div>
+</div>

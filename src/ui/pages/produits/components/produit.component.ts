@@ -1,5 +1,4 @@
-import {Component, Input} from "@angular/core";
-import {Produit} from "../../../../domain/produit/produit";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {CommonModule, NgForOf} from "@angular/common";
 import {TypeProduitComponent} from "./type-produit.component";
 import {ProduitAvecPrixTtc} from "../../../../domain/produit/produit-ttc";
@@ -62,11 +61,29 @@ import {ProduitAvecPrixTtc} from "../../../../domain/produit/produit-ttc";
             </div>
           </li>
         </ul>
+        <div class="card-body">
+          <button type="button" class="btn btn-success me-3" [disabled]="produitIndisponible"
+                  (click)="emitAjouterAuPanier()">Ajouter au panier
+          </button>
+          <small *ngIf="produitIndisponible">Non disponible</small>
+        </div>
       </section>
     `
 })
-export class ProduitComponent {
+export class ProduitComponent implements OnInit {
 
   @Input()
   public produitAvecPrixTtc!: ProduitAvecPrixTtc;
+  public produitIndisponible!: boolean;
+
+  @Output()
+  public ajouterAuPanier: EventEmitter<ProduitAvecPrixTtc> = new EventEmitter<ProduitAvecPrixTtc>();
+
+  ngOnInit(): void {
+    this.produitIndisponible = this.produitAvecPrixTtc.quantite === 0;
+  }
+
+  emitAjouterAuPanier() {
+    this.ajouterAuPanier.emit(this.produitAvecPrixTtc);
+  }
 }

@@ -1,7 +1,7 @@
 <h1>Kata PCK - Page produits</h1>
 
 <div class="row mb-3">
-  <div class="col">
+  <div class="col d-flex">
     <label>
       Filtre
       <select class="form-select" #typeProduitSelectionne
@@ -11,12 +11,16 @@
                 [value]="filtre">{{filtre | libelleTypeProduit}}</option>
       </select>
     </label>
+    <div class="d-flex flex-row align-items-end ms-3">
+      <a routerLink="/panier" class="btn btn-primary">Accéder au panier - ({{nombreProduitsPanier$ | async}} articles)</a>
+    </div>
   </div>
+
 </div>
 
 <div class="row">
   <div class="col-4 mb-4" *ngFor="let produit of produitsFiltres$ | async">
-    <app-produit [produitAvecPrixTtc]="produit"></app-produit>
+    <app-produit [produitAvecPrixTtc]="produit" (ajouterAuPanier)="ajouterAuPanier($event)"></app-produit>
   </div>
 </div>
 
